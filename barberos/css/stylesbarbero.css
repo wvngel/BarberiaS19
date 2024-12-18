@@ -1,0 +1,62 @@
+/* General */
+body {
+    background-color: #f9f9f9;
+  }
+  
+  /* Card Styling */
+  .card {
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  /* Buttons */
+  #btn-desplegar-datos {
+    font-weight: bold;
+  }
+  
+  #btn-guardar-cambios {
+    background-color: #198754;
+    color: white;
+    font-weight: bold;
+  }
+  
+  #toggle-details {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #toggle-details:hover {
+    text-decoration: underline;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #f8f9fa;
+  }
+  
+  .navbar .navbar-brand img.logo {
+    width: 50px;
+  }
+  
+  .navbar-nav .nav-link {
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff;
+  }
+  
+  .footer {
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  

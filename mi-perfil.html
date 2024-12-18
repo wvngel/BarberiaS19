@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil del Cliente</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Tarjeta de Perfil -->
+  <div class="container mt-5">
+    <h2 class="text-center">Perfil del Cliente</h2>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Información Personal</h5>
+        <p><strong>Nombre:</strong> <span id="card-nombre"></span></p>
+        <p><strong>Apellido:</strong> <span id="card-apellido"></span></p>
+        <p><strong>Correo Electrónico:</strong> <span id="card-email"></span></p>
+        <p><strong>Teléfono:</strong> <span id="card-telefono"></span></p>
+        <p><strong>RUT:</strong> <span id="card-rut"></span></p>
+        <div class="text-center">
+          <button id="editar-perfil" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-editar">Editar Perfil</button>
+          <button id="editar-contrasena" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-contrasena">Editar Contraseña</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Edición -->
+  <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEditarLabel">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="cliente-form">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" id="apellido" class="form-control" placeholder="Apellido">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" id="email" class="form-control" placeholder="Correo Electrónico" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="text" id="telefono" class="form-control" placeholder="Teléfono">
+            </div>
+            <div class="mb-3">
+              <label for="rut" class="form-label">RUT</label>
+              <input type="text" id="rut" class="form-control" placeholder="RUT">
+            </div>
+            <div class="mb-3">
+              <label for="password-confirm" class="form-label">Contraseña Actual</label>
+              <input type="password" id="password-confirm" class="form-control" placeholder="Confirma tu contraseña">
+            </div>
+            <div class="text-center">
+              <button id="guardar-cambios" class="btn btn-success">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Cambio de Contraseña -->
+  <div class="modal fade" id="modal-contrasena" tabindex="-1" aria-labelledby="modalContrasenaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalContrasenaLabel">Editar Contraseña</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-cambiar-contrasena">
+            <div class="mb-3">
+              <label for="contrasena-actual" class="form-label">Contraseña Actual</label>
+              <input type="password" id="contrasena-actual" class="form-control" placeholder="Ingresa tu contraseña actual" required>
+            </div>
+            <div class="mb-3">
+              <label for="nueva-contrasena" class="form-label">Nueva Contraseña</label>
+              <input type="password" id="nueva-contrasena" class="form-control" placeholder="Crea una nueva contraseña" required>
+            </div>
+            <div class="mb-3">
+              <label for="repetir-contrasena" class="form-label">Repetir Nueva Contraseña</label>
+              <input type="password" id="repetir-contrasena" class="form-control" placeholder="Repite la nueva contraseña" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mi-perfil.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Lógica para cargar datos en la tarjeta
+    document.addEventListener("DOMContentLoaded", async () => {
+      const idCliente = localStorage.getItem("id_cliente");
+      if (idCliente) {
+        const response = await fetch(`https://localhost:3000/api/clientes/${idCliente}`, {
+          method: "GET",
+          credentials: "include"
+        });
+        if (response.ok) {
+          const cliente = await response.json();
+          document.getElementById("card-nombre").textContent = cliente.nombre;
+          document.getElementById("card-apellido").textContent = cliente.apellido;
+          document.getElementById("card-email").textContent = cliente.email;
+          document.getElementById("card-telefono").textContent = cliente.telefono;
+          document.getElementById("card-rut").textContent = cliente.rut;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

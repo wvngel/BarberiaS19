@@ -1,0 +1,79 @@
+/* General */
+.container {
+    max-width: 1200px;
+  }
+  
+  /* Ajustar márgenes y alineaciones */
+  .row {
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #6c757d;
+  }
+  
+  /* Botones */
+  .btn-outline-primary {
+    font-size: 1rem;
+    padding: 10px 25px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  /* Imagenes */
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .image-wrapper:hover img {
+    transform: scale(1.05); /* Efecto de zoom suave */
+  }
+  
+  .shadow-lg {
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    .btn-outline-primary {
+      font-size: 0.9rem;
+      padding: 8px 20px;
+    }
+  
+    .image-wrapper img {
+      height: auto;
+    }
+  }
+  

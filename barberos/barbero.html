@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil del Barbero</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .perfil-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .perfil-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .perfil-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .perfil-header h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #4a90e2;
+      border-color: #4a90e2;
+    }
+
+    .btn-primary:hover {
+      background-color: #357ab8;
+      border-color: #357ab8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Contenido Principal -->
+  <div class="container mt-5">
+    <div class="perfil-container">
+      <!-- Header del Perfil -->
+      <div class="perfil-header">
+        <img src="https://via.placeholder.com/100" alt="Foto de Perfil">
+        <h2>Patrick Shick</h2>
+        <p>Buz Cut Expert</p>
+      </div>
+
+      <!-- Formulario del Perfil -->
+      <form id="barbero-form">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="col-md-6">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" id="apellido" class="form-control" placeholder="Apellido">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" id="email" class="form-control" placeholder="Correo Electrónico" disabled>
+          </div>
+          <div class="col-md-6">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" id="telefono" class="form-control" placeholder="Teléfono">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="especialidad" class="form-label">Especialidad</label>
+            <input type="text" id="especialidad" class="form-control" placeholder="Especialidad">
+          </div>
+          <div class="col-md-6">
+            <label for="password-confirm" class="form-label">Contraseña Actual</label>
+            <input type="password" id="password-confirm" class="form-control" placeholder="Confirma tu contraseña">
+          </div>
+        </div>
+        <div class="text-center">
+          <button id="guardar-cambios" class="btn btn-success">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Botón Modificar Contraseña -->
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCambiarContrasena">
+        Modificar Contraseña
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal para Modificar Contraseña -->
+  <div class="modal fade" id="modalCambiarContrasena" tabindex="-1" aria-labelledby="modalCambiarContrasenaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCambiarContrasenaLabel">Modificar Contraseña</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-cambiar-contrasena">
+            <div class="mb-3">
+              <label for="contrasena-actual" class="form-label">Contraseña Actual</label>
+              <input type="password" id="contrasena-actual" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="nueva-contrasena" class="form-label">Nueva Contraseña</label>
+              <input type="password" id="nueva-contrasena" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="repetir-contrasena" class="form-label">Repetir Nueva Contraseña</label>
+              <input type="password" id="repetir-contrasena" class="form-control" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/barberos.js"></script>
+  <script src="js/mainBarbero.js"></script>
+</body>
+</html>

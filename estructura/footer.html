@@ -1,0 +1,73 @@
+  <!-- Footer -->
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container text-center">
+    <p>&copy; 2024 Barbería Sector-19. Todos los derechos reservados.</p>
+    <button class="btn btn-outline-light mt-2" data-bs-toggle="modal" data-bs-target="#cancelarModal">
+      Cancelar cita
+    </button>
+  </div>
+</footer>
+
+<!-- Modal para Cancelar Cita -->
+<!-- Modal para Cancelar Cita -->
+<div class="modal fade" id="cancelarModal" tabindex="-1" aria-labelledby="cancelarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelarModalLabel">Cancelar Cita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="cancelarForm">
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" id="correo" class="form-control" placeholder="Ingrese su correo" required>
+          </div>
+          <div class="mb-3">
+            <label for="codigoReserva" class="form-label">Código de reserva</label>
+            <input type="text" id="codigoReserva" class="form-control" placeholder="Ingrese su código de reserva" required>
+          </div>
+          <div class="mb-3">
+            <label for="motivo" class="form-label">Motivo de cancelación</label>
+            <textarea id="motivo" class="form-control" rows="4" placeholder="Escribe el motivo de cancelación" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger">Cancelar cita</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+document.getElementById('cancelarForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const correo = document.getElementById('correo').value;
+  const codigoReserva = document.getElementById('codigoReserva').value;
+  const motivo = document.getElementById('motivo').value;
+
+  try {
+    const response = await fetch('/api/cancelar-cita', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo, codigoReserva, motivo }),
+    });
+
+    if (response.ok) {
+      alert('Tu cita ha sido cancelada exitosamente.');
+      document.getElementById('cancelarForm').reset();
+      const modal = bootstrap.Modal.getInstance(document.getElementById('cancelarModal'));
+      modal.hide();
+    } else {
+      const error = await response.json();
+      alert(error.message || 'Hubo un problema al cancelar tu cita.');
+    }
+  } catch (error) {
+    console.error('Error al cancelar la cita:', error);
+    alert('Error en el servidor. Inténtalo más tarde.');
+  }
+});
+
+
+</script>

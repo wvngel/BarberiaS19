@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar Detalles</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <style>
+    body {
+      background-color: #f4f4f9;
+    }
+    .progress-bar {
+      transition: width 0.4s ease;
+      background-color: #007bff;
+    }
+    .card {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .form-control[readonly] {
+      background-color: #e9ecef;
+    }
+    #resumen-container {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 15px;
+    }
+    .card.shadow {
+      border-radius: 12px;
+    }
+    h1, h4 {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      color: #333;
+    }
+    button {
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5 d-flex justify-content-center">
+    
+    <div class="card shadow p-4" style="width: 100%; max-width: 900px;">
+              <!-- Botón de regreso -->
+              <div class="mb-3">
+                <a href="servicios-disponibles.html" class="btn btn-link text-dark text-decoration-none">← Volver</a>
+            </div>
+            
+      <h1 class="text-center mb-4">Selecciona tu Reserva</h1>
+      <div class="progress mb-4">
+      </div>
+
+      <!-- Sección de selección de día -->
+      <div id="dia-section">
+        <h4 class="mb-3">1. Selecciona un día:</h4>
+        <div class="input-group mb-4">
+          <input type="date" id="fechaInicio" class="form-control">
+          <button id="btnBuscarHorarios" class="btn btn-primary">Buscar horarios</button>
+        </div>
+      </div>
+
+      <!-- Sección de horarios disponibles -->
+      <div id="horarios-section" style="display: none;">
+        <h4 class="mb-3">2. Horarios disponibles:</h4>
+        <div id="horarios-container" class="d-flex flex-wrap justify-content-center"></div>
+      </div>
+
+      <!-- Sección de barberos disponibles -->
+      <div id="barberos-section" style="display: none;">
+        <h4 class="mb-3">3. Barberos disponibles:</h4>
+        <div id="barberos-container" class="d-flex flex-wrap justify-content-center"></div>
+      </div>
+
+      <!-- Sección de resumen y formulario -->
+      <div id="resumen-form-section" class="mt-5 row" style="display: none;">
+        <!-- Resumen -->
+        <div class="col-md-6">
+          <h4 class="mb-3">Resumen de tu reserva:</h4>
+          <div id="resumen-container">
+            <p><strong>Servicio:</strong> <span id="resumen-servicio"></span></p>
+            <p><strong>Tiempo:</strong> <span id="resumen-tiempo"></span></p>
+            <p><strong>Día:</strong> <span id="resumen-dia"></span></p>
+            <p><strong>Hora:</strong> <span id="resumen-hora"></span></p>
+            <p><strong>Barbero:</strong> <span id="resumen-barbero"></span></p>
+            <p><strong>Valor:</strong> $<span id="resumen-valor"></span></p>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="col-md-6">
+          <h4 class="mb-3">Datos de contacto:</h4>
+          <form id="reserva-form">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Tu apellido" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico" required>
+            </div>
+            <div class="mb-3">
+              <label for="rut" class="form-label">RUT</label>
+              <input type="text" class="form-control" id="rut" placeholder="Tu RUT (sin puntos ni guión)" required>
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" placeholder="Tu número de teléfono" required>
+            </div>
+            <div class="mb-3">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" rows="3" placeholder="Escribe tus observaciones (opcional)"></textarea>
+            </div>
+            <button type="submit" id="confirmar-reserva" class="btn btn-success w-100">Confirmar Reserva</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal flotante de éxito -->
+<div class="modal fade" id="reservaExitoModal" tabindex="-1" aria-labelledby="reservaExitoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="reservaExitoModalLabel">¡Reserva realizada con éxito!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Nombre del cliente:</strong> <span id="modalNombreCliente"></span></p>
+        <p><strong>Código de reserva:</strong> <span id="modalCodigoReserva"></span></p>
+        <p><strong>Servicio:</strong> <span id="modalServicio"></span></p>
+        <p><strong>Nombre del profesional:</strong> <span id="modalNombreBarbero"></span></p>
+        <p><strong>Fecha:</strong> <span id="modalFecha"></span></p>
+        <p><strong>Hora:</strong> <span id="modalHora"></span></p>
+        <p><strong>Observaciones:</strong> <span id="modalObservaciones"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.html';">Volver al inicio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="js/reserva-detalles.js"></script>
+</body>
+</html>

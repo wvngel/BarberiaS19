@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - Nexo Digital</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/pago.css">
+</head>
+<body style="background-color: #f8f9fa;">
+    <div class="container my-5">
+
+        <!-- Botón de regreso -->
+        <div class="mb-3">
+            <a href="productos.html" class="btn btn-link text-dark text-decoration-none">← Volver</a>
+        </div>
+        
+
+        <h1 class="text-center mb-4">Pagar</h1>
+
+        <!-- Botón de iniciar sesión -->
+        <div class="text-end mb-4">
+            <button class="btn btn-outline-dark" style="border-radius: 25px;">Iniciar Sesi  ón</button>
+        </div>
+
+        <form id="checkout-form">
+            <!-- Contacto -->
+            <div class="mb-4">
+                <h5>Contacto</h5>
+                <input type="email" class="form-control mb-2" placeholder="Correo electrónico" required>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="newsletter">
+                    <label class="form-check-label" for="newsletter">
+                        Enviarme novedades y ofertas por correo electrónico
+                    </label>
+                </div>
+            </div>
+
+            <!-- Entrega -->
+            <div class="mb-4">
+                <h5>Entrega</h5>
+                <p class="text-muted">Retiro en tienda: <strong>Nexo Digital, Calle Ficticia #123, Santiago</strong></p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Apellidos" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Teléfono" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Ciudad" value="Santiago" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Métodos de pago -->
+            <div class="mb-4">
+                <h5>Método de pago</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="mercadoPago" required>
+                    <label class="form-check-label" for="mercadoPago">
+                        Mercado Pago
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="pagarRetirar">
+                    <label class="form-check-label" for="pagarRetirar">
+                        Pagar al retirar
+                    </label>
+                </div>
+            </div>
+
+            <!-- Código de descuento -->
+            <div class="mb-4">
+                <h5>Código de descuento o tarjeta de regalo</h5>
+                <div class="input-group">
+                    <input type="text"   class="form-control" id="discount-code" placeholder="Introduce el código">
+                    <button type="button" class="btn btn-primary" id="apply-discount">Aplicar</button>
+                </div>
+                <p id="discount-message" class="text" style="display: none;">Introduce un código válido.</p>
+            </div>
+
+            <!-- Resumen de compra -->
+            <div class="mb-4">
+                <h5>Resumen de compra</h5>
+                <div class="bg-light p-3 rounded">
+                    <ul class="list-group mb-3" id="order-summary">
+                        <!-- Productos añadidos dinámicamente -->
+                    </ul>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <strong id="order-total">$0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de pago -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark btn-lg w-100" style="border-radius: 25px;">Proceder con el pedido</button>
+            </div>
+        </form>
+    </div>
+    <script src="js/pago.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* Barra de Búsqueda */
+#search-bar {
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+  width: 50%; /* Ajustar ancho para centrarlo */
+  margin: 0 auto; /* Centramos la barra */
+}
+
+#search-bar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* Tarjetas: Sin bordes por defecto */
+.card {
+  border: none; /* Sin bordes inicialmente */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: none; /* Sin sombra inicialmente */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  margin: 10px;
+  color: white;
+}
+
+/* Efecto al pasar el cursor */
+.card:hover {
+  transform: scale(1.05); /* Agrandar levemente */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más notoria */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Bordes visibles al hacer hover */
+}
+
+/* Imágenes dentro de las tarjetas */
+.card img {
+  height: 200px; /* Ajustar la altura */
+  object-fit: cover; /* Cubrir el espacio sin deformarse */
+  width: 100%; /* Asegurar el ancho completo */
+  border-radius: 10px; /* Igualar los bordes a la tarjeta */
+}
+
+/* Títulos dentro de las tarjetas */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black; /* Asegurar que el texto sea visible */
+}
+
+/* Texto dentro de las tarjetas */
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: black; /* Texto secundario para el precio */
+}
+
+/* Botones */
+.btn-primary {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+/* Opcional: Espaciado entre tarjetas */
+.row.g-3 .col-md-4 {
+  margin-bottom: 20px;
+}
+
+/* Sombra de Texto */
+.text-shadow {
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Carrito de compras */
+.shopping-cart-container {
+  z-index: 9999;
+}
+
+.shopping-cart-container h5 {
+  margin-bottom: 1rem;
+}
+
+.shopping-cart-container ul {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.shopping-cart-container li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+/* Ajuste del Carrito */
+#shopping-cart {
+  position: fixed;
+  top: 70px; /* Ajusta este valor para que quede justo debajo del navbar */
+  right: 20px; /* Separación lateral */
+  width: 320px; /* Ancho del carrito */
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 1050; /* Asegúrate de que quede por encima del contenido */
+  display: none;
+  padding: 15px; /* Agrega un padding interno */
+}
+
+/* Botón para mostrar/ocultar carrito */
+#cart-button {
+  position: fixed;
+  top: 20px; /* Ajusta este valor para que no se solape con el navbar */
+  right: 20px;
+  z-index: 1060; /* Más alto que el carrito */
+}
+
+/* Botón de cierre para el carrito */
+#shopping-cart .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  z-index: 1070; /* Más alto que el carrito */
+}
+
+#shopping-cart .close-btn:hover {
+  color: red;
+}
+
+/* Ajustes de lista dentro del carrito */
+.shopping-cart-container ul {
+  padding: 0;
+  margin: 0;
+}
+
+.shopping-cart-container ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}

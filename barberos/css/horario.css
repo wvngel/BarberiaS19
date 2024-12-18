@@ -1,0 +1,133 @@
+/* Reset general */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Títulos */
+h1, h2 {
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+/* Inputs y Botones */
+.form-label {
+  font-weight: bold;
+}
+
+input[type="date"] {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 8px 12px;
+  transition: border-color 0.3s;
+}
+
+input[type="date"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+/* Días de la semana */
+#diasSemana {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dia-card {
+  flex: 1 1 calc(14% - 10px);
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dia-card:hover {
+  transform: scale(1.05);
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Horarios */
+#horariosDisponibles, #horariosSeleccionados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.horario-card {
+  flex: 1 1 calc(20% - 10px);
+  background: #e9ecef;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.horario-card:hover {
+  background: #28a745;
+  color: white;
+}
+
+/* Confirmar horarios */
+#btnConfirmarHorarios {
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
